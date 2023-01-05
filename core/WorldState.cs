@@ -1,6 +1,6 @@
-public abstract class WorldState {
+public abstract class WorldState<T> {
 
-    abstract public Boolean addTo();
+    abstract public T addTo(T other);
     
-    abstract public Boolean isEqualTo();
+    abstract public Boolean isEqualTo(T other);
 }
