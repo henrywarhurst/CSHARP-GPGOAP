@@ -1,12 +1,12 @@
-public class GoapPlanner {
-    public GoapPlanner(WorldState goal, WorldState start) {
+public class GoapPlanner<T> {
+    public GoapPlanner(WorldState<T> goal, WorldState<T> start) {
         Goal = goal;
         Start = start;
     }
 
-    public WorldState Goal { get; }
+    public WorldState<T> Goal { get; }
 
-    public WorldState Start { get; }
+    public WorldState<T> Start { get; }
 
     public Action[] plan() {
         return new Action[0];

@@ -1,11 +1,11 @@
-public class GoapTreeNode {
+public class GoapTreeNode<T> {
 
-    public GoapTreeNode(GoapTreeEdge[] edges, WorldState worldState) {
+    public GoapTreeNode(GoapTreeEdge<T>[] edges, WorldState<T> worldState) {
         Edges = edges;
         WorldState = worldState;
     }
 
-    public GoapTreeEdge[] Edges { get; }
+    public GoapTreeEdge<T>[] Edges { get; }
 
-    public WorldState WorldState { get; }
+    public WorldState<T> WorldState { get; }
 }
