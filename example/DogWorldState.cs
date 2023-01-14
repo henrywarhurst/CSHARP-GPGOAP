@@ -4,7 +4,7 @@ public class DogWorldState : WorldState
 
     public Boolean? IsHungry { get; set; }
 
-    public override WorldState addTo(WorldState other)
+    public override WorldState AddOtherTo(WorldState other)
     {
         DogWorldState newState = new DogWorldState();
         newState.IsHungry = this.IsHungry;
@@ -19,7 +19,7 @@ public class DogWorldState : WorldState
         return newState;
     }
 
-    public override int estimatedDistance(WorldState other)
+    public override int EstimatedDistance(WorldState other)
     {
         int cost = 0;
         int costStep = 1;
@@ -34,9 +34,24 @@ public class DogWorldState : WorldState
         return cost;
     }
 
-    public override bool isEqualTo(WorldState other)
+    public override bool IsEqualTo(WorldState other)
     {
-
+        // TODO: really need some better solution than this casting
         return this.IsHungry == ((DogWorldState)other).IsHungry || this.HasFoodInBowl == ((DogWorldState)other).HasFoodInBowl;
+    }
+
+    public override bool IsSupersetOfOther(WorldState other)
+    {
+        Boolean isSupersetOfOther = true;
+
+        if (((DogWorldState)other).IsHungry != null && ((DogWorldState)other).IsHungry != IsHungry) {
+            isSupersetOfOther = false;
+        }
+
+        if (((DogWorldState)other).HasFoodInBowl != null && ((DogWorldState)other).HasFoodInBowl != HasFoodInBowl) {
+            isSupersetOfOther = false;
+        }
+
+        return isSupersetOfOther;
     }
 }

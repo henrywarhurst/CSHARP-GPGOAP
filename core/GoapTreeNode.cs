@@ -5,6 +5,7 @@ public class GoapTreeNode {
         WorldState = worldState;
         CostFromStart = costFromStart;
         EstimatedCostToGoal = estimatedCostToGoal;
+        ActionsDeployedThusFar = new List<Action>();
     }
 
     public List<GoapTreeEdge> Edges { get; }
@@ -14,4 +15,6 @@ public class GoapTreeNode {
     public int CostFromStart { get; }
 
     public int EstimatedCostToGoal { get; }
+
+    public List<Action> ActionsDeployedThusFar { get; set; }
 }

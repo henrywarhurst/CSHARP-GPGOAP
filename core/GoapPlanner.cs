@@ -13,15 +13,15 @@ public class GoapPlanner {
 
     public List<Action> Plan() {
         // build out plan tree
-        GoapTreeNode start = new GoapTreeNode(new List<GoapTreeEdge>(), Start, 0, Start.estimatedDistance(Goal));
+        GoapTreeNode start = new GoapTreeNode(new List<GoapTreeEdge>(), Start, 0, Start.EstimatedDistance(Goal));
 
         List<GoapTreeNode> unexplored = new List<GoapTreeNode>();
         unexplored.Add(start);
 
         while (unexplored.Count > 0) {
             // Find best option from unexplored list
-            GoapTreeNode current;
-            int minCost = int.MaxValue;
+            GoapTreeNode current = unexplored[0];
+            int minCost = current.CostFromStart + current.EstimatedCostToGoal;
             for (int i=0; i<unexplored.Count; i++) {
                 GoapTreeNode node = unexplored[i];
                 int cost = node.CostFromStart + node.EstimatedCostToGoal;
@@ -32,11 +32,32 @@ public class GoapPlanner {
             }
 
             // Check if we are at the goal
+            if (current.WorldState.IsEqualTo(Goal)) {
+                return current.ActionsDeployedThusFar;
+            }
 
             // Add new candidates for exploration
+            foreach (Action action in AllAvailableActions) {
+                if (!current.WorldState.IsSupersetOfOther(action.Preconditions)) {
+                    continue;
+                }
+
+                WorldState newWorld = current.WorldState.AddOtherTo(action.Effects);
+                GoapTreeNode newNode = new GoapTreeNode(
+                    new List<GoapTreeEdge>(), 
+                    newWorld, 
+                    current.CostFromStart + action.Cost, 
+                    newWorld.EstimatedDistance(Goal)
+                );
+                // TODO: tidy this up
+                newNode.ActionsDeployedThusFar = current.ActionsDeployedThusFar;
+                newNode.ActionsDeployedThusFar.Add(action);
+
+                unexplored.Add(newNode);
+            }
         }
 
-        // find best path through tree
+        // shouldn't actually hit this
         return new List<Action>();
     }
 }
