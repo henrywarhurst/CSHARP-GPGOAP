@@ -16,7 +16,7 @@ DogWorldState begToHumanEffects = new DogWorldState();
 begToHumanPreconditions.HasFoodInBowl = true;
 begToHumanPreconditions.IsHungry = true;
 
-Action<DogWorldState> begToHuman = new Action<DogWorldState>(
+Action begToHuman = new Action(
     1, 
     "begToHuman", 
     begToHumanPreconditions, 
@@ -32,7 +32,7 @@ DogWorldState eatFoodEffects = new DogWorldState();
 eatFoodEffects.HasFoodInBowl = false;
 eatFoodEffects.IsHungry = false;
 
-Action<DogWorldState> eatFood = new Action<DogWorldState>(
+Action eatFood = new Action(
     1, 
     "eatFood", 
     eatFoodPreconditions, 
@@ -46,18 +46,18 @@ eatGrassPreconditions.IsHungry = true;
 DogWorldState eatGrassEffects = new DogWorldState();
 eatGrassEffects.IsHungry = false;
 
-Action<DogWorldState> eatGrass = new Action<DogWorldState>(
+Action eatGrass = new Action(
     1, 
     "eatGrass", 
     eatGrassPreconditions, 
     eatGrassEffects
 );
 
-List<Action<DogWorldState>> allAvailableActions = new List<Action<DogWorldState>>();
+List<Action> allAvailableActions = new List<Action>();
 allAvailableActions.Add(begToHuman);
 allAvailableActions.Add(eatFood);
 allAvailableActions.Add(eatGrass);
 
-GoapPlanner<DogWorldState> planner = new GoapPlanner<DogWorldState>(allAvailableActions, goal, start));
+GoapPlanner planner = new GoapPlanner(allAvailableActions, goal, start);
 
-Console.WriteLine("Plan: " + planner.plan());
+Console.WriteLine("Plan: " + planner.Plan());

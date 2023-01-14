@@ -1,9 +1,9 @@
-public class Action<T> {
+public class Action {
     public Action(
         int cost, 
         string name, 
-        WorldState<T> preconditions, 
-        WorldState<T> effects
+        WorldState preconditions, 
+        WorldState effects
     ) {
         Cost = cost;
         Name = name;
@@ -15,7 +15,7 @@ public class Action<T> {
 
     public string Name { get; }
 
-    public WorldState<T> Preconditions { get; }
+    public WorldState Preconditions { get; }
 
-    public WorldState<T> Effects { get; }
+    public WorldState Effects { get; }
 }

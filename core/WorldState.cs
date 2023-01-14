@@ -1,6 +1,8 @@
-public abstract class WorldState<T> {
+public abstract class WorldState {
 
-    abstract public T addTo(T other);
+    abstract public WorldState addTo(WorldState other);
     
-    abstract public Boolean isEqualTo(T other);
+    abstract public Boolean isEqualTo(WorldState other);
+
+    abstract public int estimatedDistance(WorldState other);
 }

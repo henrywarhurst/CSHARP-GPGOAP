@@ -1,11 +1,17 @@
-public class GoapTreeNode<T> {
+public class GoapTreeNode {
 
-    public GoapTreeNode(List<GoapTreeEdge<T>> edges, WorldState<T> worldState) {
+    public GoapTreeNode(List<GoapTreeEdge> edges, WorldState worldState, int costFromStart, int estimatedCostToGoal) {
         Edges = edges;
         WorldState = worldState;
+        CostFromStart = costFromStart;
+        EstimatedCostToGoal = estimatedCostToGoal;
     }
 
-    public List<GoapTreeEdge<T>> Edges { get; }
+    public List<GoapTreeEdge> Edges { get; }
 
-    public WorldState<T> WorldState { get; }
+    public WorldState WorldState { get; }
+
+    public int CostFromStart { get; }
+
+    public int EstimatedCostToGoal { get; }
 }
