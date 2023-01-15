@@ -13,7 +13,7 @@ public class GoapPlanner {
 
     public List<Action> Plan() {
         // build out plan tree
-        GoapTreeNode start = new GoapTreeNode(new List<GoapTreeEdge>(), Start, 0, Start.EstimatedDistance(Goal));
+        GoapTreeNode start = new GoapTreeNode(Start, 0, Start.EstimatedDistance(Goal));
 
         List<GoapTreeNode> unexplored = new List<GoapTreeNode>();
         unexplored.Add(start);
@@ -48,7 +48,6 @@ public class GoapPlanner {
 
                 WorldState newWorld = current.WorldState.AddOtherTo(action.Effects);
                 GoapTreeNode newNode = new GoapTreeNode(
-                    new List<GoapTreeEdge>(), 
                     newWorld, 
                     current.CostFromStart + action.Cost, 
                     newWorld.EstimatedDistance(Goal)
