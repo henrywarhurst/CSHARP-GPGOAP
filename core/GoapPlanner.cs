@@ -52,7 +52,7 @@ public class GoapPlanner {
                     current.CostFromStart + action.Cost, 
                     newWorld.EstimatedDistance(Goal)
                 );
-                // TODO: tidy this up
+
                 newNode.ActionsDeployedThusFar = new List<Action>(current.ActionsDeployedThusFar);
                 newNode.ActionsDeployedThusFar.Add(action);
 
