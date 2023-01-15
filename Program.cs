@@ -13,8 +13,7 @@ begToHumanPreconditions.HasFoodInBowl = false;
 begToHumanPreconditions.IsHungry = true;
 
 DogWorldState begToHumanEffects = new DogWorldState();
-begToHumanPreconditions.HasFoodInBowl = true;
-begToHumanPreconditions.IsHungry = true;
+begToHumanEffects.HasFoodInBowl = true;
 
 Action begToHuman = new Action(
     1, 
@@ -47,7 +46,7 @@ DogWorldState eatGrassEffects = new DogWorldState();
 eatGrassEffects.IsHungry = false;
 
 Action eatGrass = new Action(
-    1, 
+    10, 
     "eatGrass", 
     eatGrassPreconditions, 
     eatGrassEffects
@@ -60,4 +59,8 @@ allAvailableActions.Add(eatGrass);
 
 GoapPlanner planner = new GoapPlanner(allAvailableActions, goal, start);
 
-Console.WriteLine("Plan: " + planner.Plan());
+Console.WriteLine("Plan:");
+List<Action> actions = planner.Plan();
+for (int i=0; i<planner.Plan().Count(); ++i) {
+    Console.WriteLine(i + 1 + ". " + actions[i].Name);
+}

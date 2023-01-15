@@ -7,13 +7,13 @@ public class DogWorldState : WorldState
     public override WorldState AddOtherTo(WorldState other)
     {
         DogWorldState newState = new DogWorldState();
-        newState.IsHungry = this.IsHungry;
-        newState.HasFoodInBowl = this.HasFoodInBowl;
+        newState.IsHungry = ((DogWorldState)other).IsHungry;
+        newState.HasFoodInBowl = ((DogWorldState)other).HasFoodInBowl;
 
-        if (IsHungry == null) {
-            newState.IsHungry = ((DogWorldState)other).IsHungry;
-        } else if (HasFoodInBowl == null) {
-            newState.HasFoodInBowl = ((DogWorldState)other).HasFoodInBowl;
+        if (((DogWorldState)other).IsHungry == null) {
+            newState.IsHungry = IsHungry;
+        } else if (((DogWorldState)other).HasFoodInBowl == null) {
+            newState.HasFoodInBowl = HasFoodInBowl;
         }
 
         return newState;

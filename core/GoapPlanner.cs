@@ -20,16 +20,20 @@ public class GoapPlanner {
 
         while (unexplored.Count > 0) {
             // Find best option from unexplored list
-            GoapTreeNode current = unexplored[0];
+            int minCostIndex = 0;
+            GoapTreeNode current = unexplored[minCostIndex];
             int minCost = current.CostFromStart + current.EstimatedCostToGoal;
+
             for (int i=0; i<unexplored.Count; i++) {
                 GoapTreeNode node = unexplored[i];
                 int cost = node.CostFromStart + node.EstimatedCostToGoal;
                 if (cost < minCost) {
                     minCost = cost;
                     current = node;
+                    minCostIndex = i;
                 }
             }
+            unexplored.RemoveAt(minCostIndex);
 
             // Check if we are at the goal
             if (current.WorldState.IsEqualTo(Goal)) {
@@ -50,7 +54,7 @@ public class GoapPlanner {
                     newWorld.EstimatedDistance(Goal)
                 );
                 // TODO: tidy this up
-                newNode.ActionsDeployedThusFar = current.ActionsDeployedThusFar;
+                newNode.ActionsDeployedThusFar = new List<Action>(current.ActionsDeployedThusFar);
                 newNode.ActionsDeployedThusFar.Add(action);
 
                 unexplored.Add(newNode);
