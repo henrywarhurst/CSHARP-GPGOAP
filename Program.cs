@@ -61,6 +61,6 @@ GoapPlanner planner = new GoapPlanner(allAvailableActions, goal, start);
 
 Console.WriteLine("Plan:");
 List<Action> actions = planner.Plan();
-for (int i=0; i<planner.Plan().Count(); ++i) {
+for (int i=0; i<actions.Count(); ++i) {
     Console.WriteLine(i + 1 + ". " + actions[i].Name);
 }
