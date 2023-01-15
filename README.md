@@ -1,6 +1,6 @@
 ## CSHARP-GPGOAP
 
-A basic implementation of GOAP in C#. No requirement for usage with Unity.
+A basic implementation of GOAP in C#.
 
 ### Running the example code
 
