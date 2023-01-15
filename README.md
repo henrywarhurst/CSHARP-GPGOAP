@@ -10,7 +10,7 @@ Run `Program.cs` - I use VSCode on MacOSX.
 
 You must implement a class which inherits from `WorldState` in your code.
 
-Inspect `examples/DogWorldState` for an idea of how this subclassing works.
+Inspect `example/DogWorldState` for an idea of how this subclassing works.
 
 Then, create your own `Action` objects, see `Program.cs` for some example actions for simulating a dog.
 
